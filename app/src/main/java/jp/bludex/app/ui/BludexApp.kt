@@ -112,7 +112,7 @@ fun BludexApp(
             if (selected != null && (live != null || archive != null)) {
                 Detail(
                     live = live, stored = archive,
-                    bondState = bonds[selected] ?: live?.bondState ?: BluetoothDevice.BOND_NONE,
+                    bondState = selected?.let { bonds[it] } ?: live?.bondState ?: BluetoothDevice.BOND_NONE,
                     onBack = { selected = null },
                     onFavorite = { selected?.let(viewModel::toggleFavorite) },
                     onRename = { name -> selected?.let { viewModel.rename(it, name) } },
